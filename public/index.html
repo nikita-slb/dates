@@ -23,19 +23,40 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      html {
+        box-sizing: border-box;
+        font-size: 14px;
+        font-family: Roboto, sans-serif;
+        font-weight: 400;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      html, body {
+        height: 100%;
+        -webkit-text-size-adjust: none;
+      }
+
+      input, textarea {
+        font-family: Roboto, sans-serif;
+        font-weight: 400;
+      }
+
+      input[type="number"] {
+         margin: 0;
+       }
+
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div class="cont react-calendar" id="daterangepicker" data-format="date_range_picker" ></div>
+    <div class="cont2 react-calendar" id="datepicker" data-format="date_picker" ></div>
+    <div class="cont3 react-calendar" id="datepicker2" data-format="date_picker" ></div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

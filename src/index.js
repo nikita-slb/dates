@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Calendar from './Calendar';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const containerClass = 'react-calendar';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const calendarContainers = document.getElementsByClassName(containerClass);
+
+if( calendarContainers.length > 0 ) {
+    Array.from(calendarContainers).forEach(container => {
+
+        const id = container.getAttribute('id');
+        const settings = {
+            format: container.getAttribute('data-format')
+        };
+
+        if( id ) {
+            ReactDOM.render(<Calendar settings={settings} />, document.getElementById(id));
+        }
+
+    });
+}
+
+
+
+

@@ -940,6 +940,10 @@ a.disabled {
     .Container{
 
       flex: 0 0 30%;
+
+      &.DEV{
+        flex: 0 0 100%;
+      }
     }
 
   }
