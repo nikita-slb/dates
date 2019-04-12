@@ -38,7 +38,7 @@ class DateRangePicker extends React.Component {
 
     render() {
 
-        let {customCSS, customStyle, name} = this.props;
+        let {customCSS, customStyle, name, id} = this.props;
         let {focusedInput, startDate, endDate} = this.state;
 
         const styleFocused = focusedInput ? 'DatePicker-focused' : '';
@@ -50,8 +50,8 @@ class DateRangePicker extends React.Component {
                 <ReactDatesDateRangePicker
                     startDate={startDate}
                     endDate={endDate}
-                    startDateId={`${name}_start`}
-                    endDateId={`${name}_end`}
+                    startDateId={`${id}_start`}
+                    endDateId={`${id}_end`}
                     onDatesChange={({startDate, endDate}) => this.dateChange({startDate, endDate})}
                     focusedInput={focusedInput}
                     onFocusChange={focusedInput => this.setState({focusedInput})}

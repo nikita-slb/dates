@@ -50,13 +50,20 @@
          margin: 0;
        }
 
+      .react-calendar{
+        width: 50%;
+        min-width: 320px;
+        margin: 0 auto;
+      }
+
     </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div class="cont react-calendar" id="daterangepicker" data-format="date_range_picker" ></div>
-    <div class="cont2 react-calendar" id="datepicker" data-format="date_picker" ></div>
-    <div class="cont3 react-calendar" id="datepicker2" data-format="date_picker" ></div>
+
+    <div class="cont2 react-calendar" id="datepicker" data-placeholder="Data" data-format="date_picker" ></div>
+    <div class="cont3 react-calendar" id="datepicker2" data-date="now" data-format="date_picker" ></div>
+    <div class="cont react-calendar" id="daterangepicker" data-date="now" data-dateEnd="2020-01-01" data-format="date_range_picker" ></div>
 
   </body>
 </html>
