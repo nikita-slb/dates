@@ -4,28 +4,30 @@ import DatePicker from './DatePicker/DatePicker'
 import DateRangePicker from './DatePicker/DateRangePicker'
 import moment from 'moment'
 import 'moment/locale/ru'
+import PropTypes from 'prop-types'
 
 const FORMATS = {
     DATE_PICKER: 'date_picker',
     DATE_RANGE_PICKER: 'date_range_picker'
 };
 
+/**
+ * Calendar - класс рендерит календарь соответствующего типа
+ */
 class Calendar extends Component {
-
-    static get defaultSettings() {
-        return {
-            format: FORMATS.DATE_PICKER,
-            locale: 'ru'
-        }
-    }
 
     constructor(props) {
         super(props);
 
+        const defaultSettings = {
+            format: FORMATS.DATE_PICKER,
+            locale: 'ru'
+        };
+
         this.settings = {
-            ...Calendar.defaultSettings,
+            ...defaultSettings,
             ...props.settings
-        }
+        };
 
     }
 
@@ -35,19 +37,21 @@ class Calendar extends Component {
 
     }
 
+    /**
+     * Возвращает дату как объект moment или null
+     * @param dateStr - строчное представление даты в формате YYYY-MM-DD
+     * @returns {object || null}
+     */
     getDate(dateStr) {
-        let dateRes = null;
-        if( dateStr === 'now' ) {
-            dateRes = moment();
-        } else if ( dateStr ) {
-            dateRes = moment(dateStr);
-        }
-
-        return dateRes;
+        return dateStr ? moment(dateStr) : null;
     }
 
+    /**
+     * монтирует календарь типа DatePicker
+     * @returns {JSX-элемент}
+     */
     renderDatePicker() {
-        const pickerConfig = this.props.pickerConfig;
+        const { pickerConfig } = this.props;
 
         return (
             <DatePicker
@@ -64,8 +68,12 @@ class Calendar extends Component {
         )
     }
 
+    /**
+     * монтирует календарь типа DateRangePicker
+     * @returns {JSX-элемент}
+     */
     renderDateRangePicker() {
-        const pickerConfig = this.props.pickerConfig;
+        const { pickerConfig } = this.props;
 
         return (
             <DateRangePicker
@@ -74,11 +82,16 @@ class Calendar extends Component {
                 id = {pickerConfig.id}
                 startDate = {this.getDate(pickerConfig.date)}
                 endDate = {this.getDate(pickerConfig.dateEnd)}
+                numberMonths = {pickerConfig.numberMonths}
+                disabled = {pickerConfig.disabled}
+                enableOutsideDays = {pickerConfig.enableOutsideDays}
+                dateStartText = {pickerConfig.dateStartText}
+                dateEndText = {pickerConfig.dateEndText}
             />
         )
     }
 
-    renderCalendar() {
+    render() {
         const { format } = this.settings;
 
         switch (format){
@@ -86,16 +99,21 @@ class Calendar extends Component {
                 return this.renderDatePicker();
             case FORMATS.DATE_RANGE_PICKER:
                 return this.renderDateRangePicker();
+            default:
+                return this.renderDatePicker();
         }
     }
-
-    render() {
-        return (
-            <>
-                { this.renderCalendar() }
-            </>
-        );
-    }
 }
+
+Calendar.displayName = 'Calendar';
+
+Calendar.defaultProps = {
+    settings: {}
+};
+
+Calendar.propTypes = {
+    settings: PropTypes.object, //Базовые настройки календаря
+    pickerConfig: PropTypes.object.isRequired //Конфигурация
+};
 
 export default Calendar;

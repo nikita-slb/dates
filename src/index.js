@@ -25,6 +25,8 @@ if( calendarContainers.length > 0 ) {
             focused: container.getAttribute('data-focused'),
             date: container.getAttribute('data-date'),
             dateEnd: container.getAttribute('data-dateEnd'),
+            dateStartText: container.getAttribute('data-dateStartText'),
+            dateEndText: container.getAttribute('data-dateEndText'),
             disabled: container.getAttribute('data-disabled'),
             enableOutsideDays: container.getAttribute('data-enableOutsideDays'),
             id: `${id}-input`
