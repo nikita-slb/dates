@@ -18,7 +18,6 @@ if( calendarContainers.length > 0 ) {
         };
         const pickerConfig = {
             placeholder: container.getAttribute('data-placeholder'),
-            name: container.getAttribute('data-name'),
             numberMonths: container.getAttribute('data-numberMonths'),
             customStyles: container.getAttribute('data-customStyles'),
             customCSS: container.getAttribute('data-customCSS'),

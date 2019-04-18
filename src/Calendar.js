@@ -4,6 +4,8 @@ import DatePicker from './DatePicker/DatePicker'
 import DateRangePicker from './DatePicker/DateRangePicker'
 import moment from 'moment'
 import 'moment/locale/ru'
+import 'moment/locale/uk'
+import 'moment/locale/es'
 import PropTypes from 'prop-types'
 
 const FORMATS = {
@@ -64,6 +66,7 @@ class Calendar extends Component {
                 name = {pickerConfig.name}
                 id = {pickerConfig.id}
                 date = {this.getDate(pickerConfig.date)}
+                focused={pickerConfig.focused}
             />
         )
     }
