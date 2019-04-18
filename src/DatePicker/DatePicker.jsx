@@ -33,7 +33,7 @@ class DatePicker extends React.Component {
     }
 
     render() {
-        const {customStyles, customCSS, placeholder, numberMonths, disabled, inputRef, customOutsideDaysFn, enableOutsideDays, error, name} = this.props;
+        const {customStyles, customCSS, placeholder, numberMonths, disabled, inputRef, customOutsideDaysFn, enableOutsideDays, error, id} = this.props;
         let {focused, date, showError} = this.state;
 
         const styleNotEmpty = date ? 'DatePicker-not-empty' : '';
@@ -65,7 +65,7 @@ class DatePicker extends React.Component {
                     navNext={(<img src={arrowRight} alt=">" className="navNext"/>)}
                     isOutsideRange={customOutsideDaysFn ? customOutsideDaysFn() : this.outsideRange()}
                     enableOutsideDays={enableOutsideDays}
-                    id={name}
+                    id={id}
                     ref={inputRef}
                 />
                 { error && showError &&
@@ -154,7 +154,6 @@ DatePicker.defaultProps = {
 DatePicker.propTypes = {
     inputRef: PropTypes.func, // ref компонента
     placeholder: PropTypes.string.isRequired, // placeholder
-    name: PropTypes.string.isRequired, // name атрибут
     numberMonths: PropTypes.number, // число месяцев в выборе
     customStyles: PropTypes.object, // кастомные стили
     customCSS: PropTypes.string, // кастомный css класс

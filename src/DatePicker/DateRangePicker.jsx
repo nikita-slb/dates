@@ -38,20 +38,20 @@ class DateRangePicker extends React.Component {
 
     render() {
 
-        let {customCSS, customStyle, name} = this.props;
+        let {customCSS, customStyle, name, id, disabled, enableOutsideDays, numberMonths, dateStartText, dateEndText} = this.props;
         let {focusedInput, startDate, endDate} = this.state;
 
         const styleFocused = focusedInput ? 'DatePicker-focused' : '';
 
         return (
             <div className={`MiniRangePicker ${customCSS} ${styleFocused}`} style={customStyle}>
-                <label className="labelStart">с</label>
-                <label className="labelEnd">по</label>
+                <label className="labelStart">{dateStartText}</label>
+                <label className="labelEnd">{dateEndText}</label>
                 <ReactDatesDateRangePicker
                     startDate={startDate}
                     endDate={endDate}
-                    startDateId={`${name}_start`}
-                    endDateId={`${name}_end`}
+                    startDateId={`${id}_start`}
+                    endDateId={`${id}_end`}
                     onDatesChange={({startDate, endDate}) => this.dateChange({startDate, endDate})}
                     focusedInput={focusedInput}
                     onFocusChange={focusedInput => this.setState({focusedInput})}
@@ -59,15 +59,17 @@ class DateRangePicker extends React.Component {
                     customArrowIcon={(<div className="customArrow"/>)}
                     startDatePlaceholderText=""
                     endDatePlaceholderText=""
+                    disabled={disabled}
                     minimumNights={0}
                     isOutsideRange={this.outsideRange()}
                     daySize={30}
+                    enableOutsideDays={enableOutsideDays}
                     navPrev={(<img src={arrowLeft} alt="<" className="navPrev"/>)}
                     navNext={(<img src={arrowRight} alt=">" className="navNext"/>)}
                     renderDayContents={(day) => DateRangePicker.renderDayContents(day)}
                     hideKeyboardShortcutsPanel={true}
                     showClearDates={true}
-                    numberOfMonths={document.documentElement.clientWidth > 540 ? 2 : 1}
+                    numberOfMonths={document.documentElement.clientWidth > 540 ? numberMonths : 1}
                 />
             </div>
         );
@@ -136,6 +138,11 @@ DateRangePicker.defaultProps = {
     customCSS: "",
     customStyle: null,
     enableRange: "all",
+    numberMonths: 2,
+    disabled: false,
+    enableOutsideDays: false,
+    dateEndText: 'по',
+    dateStartText: 'с',
     dateChangeHandler: () => {
     },
     name: "DateRangePicker"
@@ -148,7 +155,13 @@ DateRangePicker.propTypes = {
     customStyle: PropTypes.object, // кастомные стили
     name: PropTypes.string, // name компонента
     enableRange: PropTypes.oneOf(["future", "past", "all"]), // разрешенный диапазон выбора
-    dateChangeHandler: PropTypes.func // обработчик выбора даты
+    dateChangeHandler: PropTypes.func, // обработчик выбора даты
+    numberMonths: PropTypes.number, // число месяцев в выборе
+    disabled: PropTypes.bool, // disabled атрибут
+    enableOutsideDays: PropTypes.bool, // разрешить выбирать прошедшие даты
+    dateStartText: PropTypes.string, //текст начальной даты
+    dateEndText: PropTypes.string, //текст конечной даты
+
 };
 
 export default DateRangePicker;

@@ -23,19 +23,47 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      html {
+        box-sizing: border-box;
+        font-size: 14px;
+        font-family: Roboto, sans-serif;
+        font-weight: 400;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      html, body {
+        height: 100%;
+        -webkit-text-size-adjust: none;
+      }
+
+      input, textarea {
+        font-family: Roboto, sans-serif;
+        font-weight: 400;
+      }
+
+      input[type="number"] {
+         margin: 0;
+       }
+
+      .react-calendar{
+        width: 50%;
+        min-width: 320px;
+        margin: 0 auto;
+      }
+
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <div class="cont2 react-calendar" id="datepicker"  data-placeholder="Data"></div>
+    <div class="cont3 react-calendar" id="datepicker2"  data-placeholder="Data 2" data-date="2019-03-05" data-format="date_picker" ></div>
+    <div class="cont react-calendar" id="daterangepicker" data-dateStartText="с" data-dateEndText="to" data-dateEnd="2020-01-01" data-format="date_range_picker" ></div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
